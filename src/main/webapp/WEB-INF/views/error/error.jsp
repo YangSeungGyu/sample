@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>
-	에러페이지!
+	ERROR페이지
 </h1>
 
 </body>
