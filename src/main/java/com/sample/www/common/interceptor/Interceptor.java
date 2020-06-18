@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.sample.www.common.util.CommonUtil;
 
 
 public class Interceptor extends HandlerInterceptorAdapter {
@@ -19,20 +22,14 @@ public class Interceptor extends HandlerInterceptorAdapter {
 	// preHandle : controller 이벤트 호출전
 	public boolean preHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler) throws IOException  {
 		final HttpSession session = request.getSession();
+		//response.sendRedirect("http://www.naver.com"); - 타 사이트로 리다이렉트
+		//request.getSession().invalidate(); - 세션 초기화
+		//if (StringUtils.contains(request.getHeader("accept"), "text/html")) {return true;} else {return false;} - 접근한게 어떤걸로 했는지 확인(html에서 온게 맞는지..) 엑셀접근오류용
+		
+		String ip = CommonUtil.getClientIP(request);
 		final String url = request.getRequestURL().toString();
 		System.out.println(url);
 		
-		
-		boolean returnRedirect = false;
-		if(returnRedirect) {
-			response.sendRedirect("http://www.naver.com");
-			return false;
-		}
-		
-		boolean sessionRemove = false;
-		if(sessionRemove) {
-			request.getSession().invalidate();	
-		}
 		
 		boolean alert = false;
 		if(alert) {
