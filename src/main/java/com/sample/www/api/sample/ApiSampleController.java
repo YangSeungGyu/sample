@@ -1,21 +1,19 @@
 package com.sample.www.api.sample;
 
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.google.gson.JsonObject;
 
 
 
@@ -24,58 +22,43 @@ public class ApiSampleController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ApiSampleController.class);
 	
-	@RequestMapping(value = "/api/sample/test", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public void test(final HttpServletResponse response, final HttpServletRequest request) throws Exception {
+	
+	//API 샐플 선언
+	@RequestMapping(value = "/api/sample/sampleApi", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	public void sampleApi(final HttpServletResponse response, final HttpServletRequest request) throws Exception {
 		//MediaType.APPLICATION_FORM_URLENCODED_VALUE  = x-www.form.urlencoded호출
-		System.out.println("/api/sample/test");
+		logger.info("/api/sample/sampleApi");
 		
-		final String body = this.getReqstBody(request);
+		final String body = ApiUtil.getReqstBody(request);
 		System.out.println(body);
 		
 		String returnStr = "리턴 결과|테스트";
-		responseWriter(returnStr,response);
+		ApiUtil.responseWriter(returnStr,response);
 	}
-
 	
-//	get responseBody
-	public static String getReqstBody(final HttpServletRequest request) {
-		final StringBuilder stringBuilder = new StringBuilder();
-		BufferedReader bufferedReader = null;
+	
+	
+	//API 샘플 호출 
+	@RequestMapping(value = "/api/sample/apiSend", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	public void apiSend(final HttpServletResponse response, final HttpServletRequest request) throws Exception {
+		
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		
+		final JsonObject param = new JsonObject();
+		param.addProperty("param1", "test1");
+		param.addProperty("param2", "test2");
+		
+		//final HttpEntity<String> entity = new HttpEntity<>(null, headers); 디폴트
+		final HttpEntity<String> entity = new HttpEntity<>(param.toString(), headers);
 		try {
-			final InputStream inputStream = request.getInputStream();
-			if (inputStream != null) {
-				bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-				final char[] charBuffer = new char[128];
-				int bytesRead = -1;
-				while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
-					stringBuilder.append(charBuffer, 0, bytesRead);
-				}
-			}
-		} catch (final IOException ex) {
-			ex.getStackTrace();
-		} finally {
-			if (bufferedReader != null) {
-				try {
-					bufferedReader.close();
-				} catch (final IOException ex) {
-					ex.getStackTrace();
-				}
-			}
-		}
-		final String body = stringBuilder.toString();
-		// 로그에 requestBody 출력
-		logger.info(" Ess Api requestBody befor Decrypt ===> " + body);
-		return body;
-	}
-	
-	public static void responseWriter(final String outTxt, final HttpServletResponse response) {
-		try (PrintWriter out = response.getWriter()) {
-			response.setContentType("text/html;charset=utf-8");
-			out.println(outTxt);
-		} catch (final IOException e) {
+			RestTemplate rt = new RestTemplate(); 
+			final Object content = rt.postForObject("http://localhost:8080/api/sample/test", entity, String.class);
+			//content 푸는 방법 확인 필요.
+		} catch (final Throwable e) {
 			e.getStackTrace();
 		}
+		
 	}
-	
 }
 

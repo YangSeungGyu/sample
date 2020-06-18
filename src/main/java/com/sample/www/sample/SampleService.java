@@ -14,7 +14,7 @@ public class SampleService {
 	@Autowired
 	private SampleDAO sampleDAO;
 
-
+	@Transactional
 	public void test() {
 		
 		String test = sampleDAO.test();
