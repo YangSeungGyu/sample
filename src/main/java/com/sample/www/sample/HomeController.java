@@ -55,7 +55,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		sampleService.test();
+		//sampleService.test();
 		
 		return "home";
 	}
