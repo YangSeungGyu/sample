@@ -15,11 +15,7 @@ public class SampleService {
 	private SampleDAO sampleDAO;
 
 	@Transactional
-	public void test() {
-		
-		String test = sampleDAO.test();
-		
-		System.out.println(test);
-
+	public String DbTest() {
+		return sampleDAO.DbTest();
 	}
 }

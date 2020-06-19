@@ -50,7 +50,7 @@ public class ApiSampleController {
 		param.addProperty("param2", "test2");
 		
 		//final HttpEntity<String> entity = new HttpEntity<>(null, headers); 디폴트
-		final HttpEntity<String> entity = new HttpEntity<>(param.toString(), headers);
+		final HttpEntity<String> entity = new HttpEntity<String>(param.toString(), headers);
 		try {
 			RestTemplate rt = new RestTemplate(); 
 			final Object content = rt.postForObject("http://localhost:8080/api/sample/test", entity, String.class);

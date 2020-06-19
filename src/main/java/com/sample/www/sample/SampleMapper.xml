@@ -3,7 +3,7 @@
 
 <mapper namespace="com.sample.www">	
 	
-	<select id="test" resultType="String">
+	<select id="DbTest" resultType="String">
 		SELECT '1' FROM DUAL
 	</select>
 </mapper>

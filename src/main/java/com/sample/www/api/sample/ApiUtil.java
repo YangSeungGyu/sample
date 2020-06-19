@@ -55,11 +55,15 @@ public class ApiUtil {
 	}
 	
 	public static void responseWriter(final String outTxt, final HttpServletResponse response) {
-		try (PrintWriter out = response.getWriter()) {
+		PrintWriter out = null;
+		try {
+			out = response.getWriter();
 			response.setContentType("text/html;charset=utf-8");
 			out.println(outTxt);
 		} catch (final IOException e) {
 			e.getStackTrace();
+		} finally {
+			out = null;
 		}
 	}
 	

@@ -10,8 +10,8 @@ public class SampleDAO {
 	@Autowired 
 	private SqlSessionTemplate sqlSession;
 	
-	public String test(){
-		return sqlSession.selectOne("test");
+	public String DbTest(){
+		return sqlSession.selectOne("DbTest");
 	}
 
 

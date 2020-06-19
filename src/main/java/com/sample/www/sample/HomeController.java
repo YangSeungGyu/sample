@@ -59,7 +59,9 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		//sampleService.test();
+		String test = sampleService.DbTest();
+		System.out.println(test);
+		
 		logger.debug("sampleTest : "+sampleTest);
 		
 		
