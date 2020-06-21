@@ -7,7 +7,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>Test</title>
 	<link rel="stylesheet" href="${CONTEXT_PATH}/resources/css/common.css?ver=${nowDate}" media="screen, print">
 	<script src="${CONTEXT_PATH}/resources/js/common.js"></script>
 	<script src="${CONTEXT_PATH}/resources/js/jquery-3.2.1.min.js"></script>
@@ -16,5 +16,10 @@
 <h1>
 	Hello world!  
 </h1>
+<img src="${CONTEXT_PATH}/resources/img/111.jpg">
+<cmm:limitStr value="말줄임테스트12341234123" length="6"/>
+
+
+<P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
