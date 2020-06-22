@@ -31,6 +31,22 @@ public class Interceptor extends HandlerInterceptorAdapter {
 		System.out.println(url);
 		
 		
+		//login url check
+		final StringBuffer urlSbf = new StringBuffer();
+		urlSbf.append(".*(")
+		.append("/sample/").append("|/api/")
+		.append(").*");
+		boolean isLogin = StringUtils.isEmpty(session.getAttribute("loginId").toString()) ? false : true;
+		if(!isLogin) {
+			if(url.matches(urlSbf.toString())) {
+				System.out.println("url에 포함됨.(비로그인 허용)");
+			} else {
+				System.out.println("url에 포함되지 않음.(로그인 후 접근 가능)");
+			}
+		}
+		
+		
+		
 		boolean alert = false;
 		if(alert) {
 			response.setContentType("text/html;charset=utf-8");
