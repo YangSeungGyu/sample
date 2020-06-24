@@ -46,4 +46,9 @@ public class SampleController {
 		logger.debug("sampleTest : "+sampleTest);
 		return "sample/test";
 	}
+	
+	
+	public void VoAutoSet() {
+		SampleVO test = sampleService.getAutoVo("testVo01");
+	}
 }
