@@ -1,5 +1,6 @@
 package com.sample.www.common.util;
 
+import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
@@ -91,7 +92,7 @@ public class CommonUtil {
 	
 	
 	//날짜관련
-	public String getToDayStr(final String outFormat) {
+	public static String getToDayStr(final String outFormat) {
 		// toDay by Str
 		String returnDt = null;
 		if (outFormat != null) {
@@ -131,7 +132,7 @@ public class CommonUtil {
 
 	}
 	
-	public String getDateToStr(final LocalDate date, final String outFormat) {
+	public static String getDateToStr(final LocalDate date, final String outFormat) {
 		// DATE TO String
 		String returnDt = null;
 
@@ -142,7 +143,7 @@ public class CommonUtil {
 		return returnDt;
 	}
 	
-	public LocalDate getStrToDate(final String dateStr, final String getFormat) {
+	public static LocalDate getStrToDate(final String dateStr, final String getFormat) {
 		// String to DT
 		LocalDate returnDt = null;
 		if (dateStr != null && getFormat != null) {
@@ -151,4 +152,16 @@ public class CommonUtil {
 		}
 		return returnDt;
 	}
+	
+	
+	public static String getMsgChange(String msgPt,String[] argmts) {
+		// msgPt : 테스트:{0},{1} 이다
+			String returnMsg = null;
+			returnMsg = msgPt;
+			for(String agm : argmts) {
+				returnMsg =	MessageFormat.format(returnMsg, "첫번째 인자");	
+			}
+			return returnMsg;
+	}
+	
 }

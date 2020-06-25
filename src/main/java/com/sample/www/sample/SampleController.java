@@ -1,9 +1,11 @@
 package com.sample.www.sample;
 
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,6 +46,11 @@ public class SampleController {
 		System.out.println(test);
 		
 		logger.debug("sampleTest : "+sampleTest);
+		
+		
+		String pwd = "wewewe";
+		String pwdEncd = DigestUtils.sha512Hex(pwd);
+		
 		return "sample/test";
 	}
 	
@@ -51,4 +58,5 @@ public class SampleController {
 	public void VoAutoSet() {
 		SampleVO test = sampleService.getAutoVo("testVo01");
 	}
+
 }
