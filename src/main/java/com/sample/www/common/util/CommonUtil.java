@@ -87,4 +87,36 @@ public class CommonUtil {
 	public static boolean checkStep2(final HttpSession session) {
 		return !StringUtils.equals((String) session.getAttribute("join_session_step"), "2");
 	}
+	
+
+	public static String getInStr(final String msg, final String startStr, final String afterStr) {
+		// 시작 문자 뒤에오는 첫번째 문자열 사이의 문자 가져오기
+		String returnStr = null;
+
+		if (msg != null && startStr != null && afterStr != null) {
+			final int firstIdx = msg.indexOf(startStr);
+			final int afterIdx = msg.indexOf(",", firstIdx);
+
+			// 첫번째 문자까지 가져오는 부분 수정 필요함.
+			returnStr = msg.substring(firstIdx, afterIdx);
+		}
+		return returnStr;
+	}
+	
+	public String getChngDtFormat(final String dateStr, final String getFormat, final String outFormat) {
+		//String 날짜를 포맷 변경해서 출력
+		// outFormat=yyyyMMdd , outFormat=yyyy.MM.dd
+		
+		//*** org.joda.time.format.DateTimeFormatter 사용됨.
+		String returnChngDt = null;
+		//if (dateStr != null && getFormat != null && outFormat != null) {
+		//	DateTimeFormatter getFmt = DateTimeFormat.forPattern(getFormat);
+		//	final DateTimeFormatter outFmt = DateTimeFormat.forPattern(outFormat);
+
+		//	DateTime dtType = getFmt.parseDateTime(dateStr);
+		//	returnChngDt = dtType.toString(outFmt);
+		//}
+		return returnChngDt;
+
+	}
 }
