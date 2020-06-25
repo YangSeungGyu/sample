@@ -1,5 +1,7 @@
 package com.sample.www.common.util;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 import java.util.regex.Pattern;
 
@@ -15,10 +17,6 @@ import com.sample.www.api.sample.ApiSampleController;
 public class CommonUtil {
 	private static final Logger logger = LoggerFactory.getLogger(ApiSampleController.class);
 	
-	
-	public static String test(){
-		return "test";
-	}
 	
 	public static String getClientIP(HttpServletRequest request) {
 	    String ip = request.getHeader("X-Forwarded-For");
@@ -49,7 +47,7 @@ public class CommonUtil {
 	    return ip;
 	}
 	
-	
+	//포멧 체크
 	public static boolean checkEmail(final String email) {
 		final String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
@@ -60,6 +58,8 @@ public class CommonUtil {
 		}
 	}
 	
+	
+	//랜덤 pwd
 	public static String ramdomPwd(final int count) {
 		// 숫자 + 영문자 랜덤 count자리 문자 추출
 		final Random rnd = new Random();
@@ -80,6 +80,7 @@ public class CommonUtil {
 	}
 	
 	
+	//Step 관련
 	//사용시에는 직접 세션에 해당 값 등록하고 다음 단계에서 session으로 확인하는용
 	public static boolean checkStep1(final HttpSession session) {
 		return !StringUtils.equals((String) session.getAttribute("join_session_step"), "1");
@@ -88,6 +89,18 @@ public class CommonUtil {
 		return !StringUtils.equals((String) session.getAttribute("join_session_step"), "2");
 	}
 	
+	
+	//날짜관련
+	public String getToDayStr(final String outFormat) {
+		// toDay by Str
+		String returnDt = null;
+		if (outFormat != null) {
+			final DateTimeFormatter outFmt = DateTimeFormatter.ofPattern(outFormat);
+			final LocalDate dtType = LocalDate.now();
+			returnDt = dtType.format(outFmt);
+		}
+		return returnDt;
+	}
 
 	public static String getInStr(final String msg, final String startStr, final String afterStr) {
 		// 시작 문자 뒤에오는 첫번째 문자열 사이의 문자 가져오기
@@ -103,20 +116,39 @@ public class CommonUtil {
 		return returnStr;
 	}
 	
-	public String getChngDtFormat(final String dateStr, final String getFormat, final String outFormat) {
-		//String 날짜를 포맷 변경해서 출력
+	public static String getChngDtFormat(final String dateStr, final String getFormat, final String outFormat) {
+		// String 날짜를 포맷 변경해서 출력
 		// outFormat=yyyyMMdd , outFormat=yyyy.MM.dd
-		
-		//*** org.joda.time.format.DateTimeFormatter 사용됨.
 		String returnChngDt = null;
-		//if (dateStr != null && getFormat != null && outFormat != null) {
-		//	DateTimeFormatter getFmt = DateTimeFormat.forPattern(getFormat);
-		//	final DateTimeFormatter outFmt = DateTimeFormat.forPattern(outFormat);
 
-		//	DateTime dtType = getFmt.parseDateTime(dateStr);
-		//	returnChngDt = dtType.toString(outFmt);
-		//}
+		if (dateStr != null && getFormat != null && outFormat != null) {
+			final DateTimeFormatter getFmt = DateTimeFormatter.ofPattern(getFormat);
+			final DateTimeFormatter outFmt = DateTimeFormatter.ofPattern(outFormat);
+			final LocalDate dtType = LocalDate.parse(dateStr, getFmt);
+			returnChngDt = dtType.format(outFmt);
+		}
 		return returnChngDt;
 
+	}
+	
+	public String getDateToStr(final LocalDate date, final String outFormat) {
+		// DATE TO String
+		String returnDt = null;
+
+		if (date != null && outFormat != null) {
+			final DateTimeFormatter outFmt = DateTimeFormatter.ofPattern(outFormat);
+			returnDt = date.format(outFmt);
+		}
+		return returnDt;
+	}
+	
+	public LocalDate getStrToDate(final String dateStr, final String getFormat) {
+		// String to DT
+		LocalDate returnDt = null;
+		if (dateStr != null && getFormat != null) {
+			final DateTimeFormatter getFmt = DateTimeFormatter.ofPattern(getFormat);
+			returnDt = LocalDate.parse(dateStr, getFmt);
+		}
+		return returnDt;
 	}
 }
