@@ -1,4 +1,4 @@
-package com.lotto.www.api.sample;
+package com.sample.www.api.sample;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

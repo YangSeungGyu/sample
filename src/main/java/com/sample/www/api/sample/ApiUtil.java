@@ -1,4 +1,4 @@
-package com.lotto.www.api.sample;
+package com.sample.www.api.sample;
 
 
 import java.io.BufferedReader;

@@ -1,4 +1,4 @@
-package com.lotto.www.home;
+package com.sample.www.home;
 
 import java.util.Locale;
 

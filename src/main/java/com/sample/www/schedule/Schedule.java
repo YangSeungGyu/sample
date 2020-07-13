@@ -1,4 +1,4 @@
-package com.lotto.www.schedule;
+package com.sample.www.schedule;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

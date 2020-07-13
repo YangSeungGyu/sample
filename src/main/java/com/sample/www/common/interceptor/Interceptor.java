@@ -1,4 +1,4 @@
-package com.lotto.www.common.interceptor;
+package com.sample.www.common.interceptor;
 
 
 import java.io.IOException;
@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.lotto.www.common.util.CommonUtil;
+import com.sample.www.common.util.CommonUtil;
 
 
 public class Interceptor extends HandlerInterceptorAdapter {

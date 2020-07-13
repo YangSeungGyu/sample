@@ -1,4 +1,4 @@
-package com.lotto.www.sample;
+package com.sample.www.sample;
 
 
 import org.mybatis.spring.SqlSessionTemplate;

@@ -1,4 +1,4 @@
-package com.lotto.www.sample;
+package com.sample.www.sample;
 
 import java.text.DateFormat;
 import java.text.MessageFormat;

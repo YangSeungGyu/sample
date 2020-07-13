@@ -1,4 +1,4 @@
-package com.lotto.www.common.code;
+package com.sample.www.common.code;
 
 public enum CommonCode {
 	SUCCESS_NORMAL("S001", "처리되었습니다."),

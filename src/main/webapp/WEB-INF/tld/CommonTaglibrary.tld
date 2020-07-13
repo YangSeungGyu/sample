@@ -5,7 +5,7 @@
 	<uri>/WEB-INF/tld/CommonTaglibrary</uri>
 	<tag>
 		<name>limitStr</name>
-		<tag-class>com.lotto.www.common.tag.LimitStrTag</tag-class>
+		<tag-class>com.sample.www.common.tag.LimitStrTag</tag-class>
 		<info>This Tag for function making</info>
 		<attribute>
 			<name>value</name>

@@ -1,4 +1,4 @@
-package com.lotto.www.common.error;
+package com.sample.www.common.error;
 
 
 import javax.servlet.http.HttpServletResponse;

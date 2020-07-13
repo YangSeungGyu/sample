@@ -1,4 +1,4 @@
-package com.lotto.www.common.util;
+package com.sample.www.common.util;
 
 import java.text.MessageFormat;
 import java.time.LocalDate;
@@ -13,7 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lotto.www.api.sample.ApiSampleController;
+import com.sample.www.api.sample.ApiSampleController;
 
 public class CommonUtil {
 	private static final Logger logger = LoggerFactory.getLogger(ApiSampleController.class);
