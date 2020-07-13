@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.sample.www">
+	<logger name="com.lotto.www">
 		<level value="info" />
 	</logger>
 	
