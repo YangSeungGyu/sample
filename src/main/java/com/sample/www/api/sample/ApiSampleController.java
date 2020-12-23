@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.JsonObject;
+import com.sample.www.common.interceptor.RestAuthCheck;
 
 
 
@@ -59,6 +60,19 @@ public class ApiSampleController {
 			e.getStackTrace();
 		}
 		
+	}
+	
+	@RestAuthCheck
+	@RequestMapping(value = "/api/sample/testApi", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	public void testApi(final HttpServletResponse response, final HttpServletRequest request) throws Exception {
+		//MediaType.APPLICATION_FORM_URLENCODED_VALUE  = x-www.form.urlencoded호출
+		logger.info("/api/sample/sampleApi");
+		
+		final String body = ApiUtil.getReqstBody(request);
+		System.out.println(body);
+		
+		String returnStr = "리턴 결과|테스트";
+		ApiUtil.responseWriter(returnStr,response);
 	}
 }
 
